@@ -20,7 +20,7 @@ namespace Microsoft.Extensions.Hosting
         public HostService(IServiceProvider serviceProvider)
         {
             _services = serviceProvider.GetServices<IHostedService>();
-            _logger = serviceProvider.GetService<ILoggerFactory>().CreateLogger(nameof(HostService));
+            _logger = serviceProvider.GetService<ILoggerFactory>().CreateLogger(Process.GetCurrentProcess().ProcessName);
         }
 
         public Task StartAsync(CancellationToken cancellation = default(CancellationToken))
